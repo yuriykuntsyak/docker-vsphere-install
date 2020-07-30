@@ -1,0 +1,10 @@
+docker01 ansible_host=10.110.83.11
+
+
+[docker]
+docker01
+
+[linux:children]
+docker
+
+

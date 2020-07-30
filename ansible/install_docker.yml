@@ -1,0 +1,25 @@
+---
+- name: install docker
+  hosts: docker
+  vars:
+    yum_install_packages:
+      - name: python2-pip
+      - name: python-virtualenv
+      - name: python-setuptools
+    pip_executable: pip
+    pip_install_packages:
+      - name: docker
+
+  pre_tasks:
+    - name: Install required packages
+      yum:
+        name: "{{ item.name }}"
+        state: present
+      loop: "{{ yum_install_packages }}"
+
+  roles:
+    - geerlingguy.repo-epel
+    - geerlingguy.pip
+    - geerlingguy.docker
+
+...
